@@ -52,9 +52,9 @@ def getproperty(key):
 
 <h2>Example</h2>
 <pre><code class="python">
-from keyalias import keyalias
+from keyalias import getdecorator
 
-@keyalias(six=6)
+@getdecorator(six=6)
 class MyClass:
     def __init__(self):
         self.data = list(range(10))  # Example list with 10 elements
@@ -92,8 +92,10 @@ print(my_instance.six)  # prints 7
 </ul>
 
 <h2>Credits</h2>
-<p><strong>Author:</strong> <a href="http://johannes-programming.online">Johannes</a></p>
-<p><strong>Email:</strong> <a href="mailto:johannes-programming@mailfence.com">johannes-programming@mailfence.com</a></p>
+<ul>
+    <li><a href="http://johannes-programming.online">Johannes</a></li>
+    <li><a href="mailto:johannes-programming@mailfence.com">johannes-programming@mailfence.com</a></li>
+</ul>
 
 <p>Thank you for using <code>keyalias</code>!</p>
 
