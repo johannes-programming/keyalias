@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>keyalias Documentation</title>
-    <link href="./styles.css" rel="stylesheet" type="text/css"  />
+    <link href="/styles.css" rel="stylesheet" type="text/css"  />
 </head>
 <body>
 
@@ -20,30 +20,33 @@
 <h2>Implementation</h2>
 <pre><code class="python">
 import functools
-from tofunc import tofunc
+from datahold import *
 
-__all__ = ["keyalias"]
+__all__ = [
+    "classdecorator", 
+    "getdecorator", 
+    "getproperty",
+]
 
-def keyalias(**kwargs):
-    return functools.partial(decorator, **kwargs)
-
-def propertyget(self, /, *, key):
-    return self[key]
-def propertyset(self, value, /, *, key):
-    self[key] = value
-def propertydel(self, /, *, key):
-    del self[key]
-def decorator(cls, /, **kwargs):
-    raws = [propertyget, propertyset, propertydel]
+def classdecorator(cls, /, **kwargs):
     for alias, key in kwargs.items():
-        bindings = list()
-        for raw in raws:
-            b = functools.partial(raw, key=key)
-            b = tofunc(b)
-            bindings.append(b)
-        pro = property(*bindings)
+        pro = getproperty(key)
         setattr(cls, alias, pro)
     return cls
+    
+def getdecorator(**kwargs):
+    return functools.partial(classdecorator, **kwargs)
+    
+def getproperty(key):
+    def fget(self, /):
+        return self[key]
+    def fset(self, value, /):
+        self[key] = value
+    def fdel(self, /):
+        del self[key]
+    doc = "self[%r]" % key
+    ans = property(fget, fset, fdel, doc)
+    return ans    
     
 </code></pre>
 
