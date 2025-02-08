@@ -6,7 +6,7 @@ requires = [
 
 [project]
 authors = [
-    { email = "johannes-programming@mailfence.com", name = "Johannes" },
+    { email = "johannes.programming@gmail.com", name = "Johannes" },
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -20,19 +20,18 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = []
-description = "Add a property that is an alias for an indexer to a class."
+description = "This project allows for adding a property that is an alias for an indexer to a class."
 keywords = []
 name = "keyalias"
 readme = "README.rst"
-requires-python = ">=3.8"
+requires-python = ">=3.11"
 version = "1.0.3+local"
 
 [project.license]
 file = "LICENSE.txt"
 
 [project.urls]
-Documentation = "https://pypi.org/project/keyalias"
 Download = "https://pypi.org/project/keyalias/#files"
-Index = "https://pypi.org/project/keyalias"
-Source = "https://github.com/johannes-programming/keyalias"
-Website = "http://keyalias.johannes-programming.online"
+Index = "https://pypi.org/project/keyalias/"
+Source = "https://github.com/johannes-programming/keyalias/"
+Website = "https://keyalias.johannes-programming.online/"
