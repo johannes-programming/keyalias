@@ -1,19 +1,20 @@
 import unittest
+from typing import *
 
 from keyalias.core import classdecorator, getdecorator, getproperty
 
 
 class TestDecorators(unittest.TestCase):
 
-    def setUp(self):
+    def setUp(self: Self) -> None:
         # Create a mock class to test the decorators
         class MockClass(dict):
             pass
 
         self.MockClass = MockClass
 
-    def test_getproperty(self):
-        """Test the functionality of getproperty function."""
+    def test_getproperty(self: Self) -> None:
+        "Test the functionality of getproperty function."
         prop_key = "test_key"
         mock_instance = self.MockClass()
         mock_instance[prop_key] = "test_value"
@@ -35,8 +36,8 @@ class TestDecorators(unittest.TestCase):
         del mock_instance.test_key
         self.assertNotIn(prop_key, mock_instance)
 
-    def test_classdecorator_with_single_alias(self):
-        """Test classdecorator with a single alias."""
+    def test_classdecorator_with_single_alias(self: Self) -> None:
+        "Test classdecorator with a single alias."
         mock_instance = self.MockClass()
 
         # Apply the classdecorator with a single alias
@@ -54,8 +55,8 @@ class TestDecorators(unittest.TestCase):
         instance.alias1 = "new_value"
         self.assertEqual(instance["key1"], "new_value")
 
-    def test_classdecorator_with_multiple_aliases(self):
-        """Test classdecorator with multiple aliases."""
+    def test_classdecorator_with_multiple_aliases(self: Self) -> None:
+        "Test classdecorator with multiple aliases."
         mock_instance = self.MockClass()
 
         # Apply the classdecorator with multiple aliases
@@ -78,8 +79,8 @@ class TestDecorators(unittest.TestCase):
         self.assertEqual(instance["key1"], "new_value1")
         self.assertEqual(instance["key2"], "new_value2")
 
-    def test_getdecorator(self):
-        """Test getdecorator function which is a partial of classdecorator."""
+    def test_getdecorator(self: Self) -> None:
+        "Test getdecorator function which is a partial of classdecorator."
 
         @getdecorator(alias1="key1")
         class MyClass(self.MockClass):
@@ -95,7 +96,7 @@ class TestDecorators(unittest.TestCase):
         instance.alias1 = "new_value"
         self.assertEqual(instance["key1"], "new_value")
 
-    def test_getdecorator(self):
+    def test_getdecorator(self: Self) -> None:
         @getdecorator(alias1="key1")
         class MyClass(self.MockClass):
             pass
@@ -110,8 +111,8 @@ class TestDecorators(unittest.TestCase):
         instance.alias1 = "new_value"
         self.assertEqual(instance["key1"], "new_value")
 
-    def test_invalid_property_access(self):
-        """Test handling of invalid property access through a missing key."""
+    def test_invalid_property_access(self: Self) -> None:
+        "Test handling of invalid property access through a missing key."
         prop_key = "missing_key"
         mock_instance = self.MockClass()
 
@@ -133,8 +134,8 @@ class TestDecorators(unittest.TestCase):
         del mock_instance.missing_key
         self.assertNotIn(prop_key, mock_instance)
 
-    def test_decorator_preserves_class_attributes(self):
-        """Test that classdecorator does not remove original class attributes."""
+    def test_decorator_preserves_class_attributes(self: Self) -> None:
+        "Test that classdecorator does not remove original class attributes."
 
         class MyClass:
             original_attr = "original"
@@ -148,8 +149,8 @@ class TestDecorators(unittest.TestCase):
         instance = MyDecoratedClass()
         self.assertEqual(instance.original_attr, "original")
 
-    def test_partial_application_of_getdecorator(self):
-        """Test that functools.partial works correctly with getdecorator."""
+    def test_partial_application_of_getdecorator(self: Self) -> None:
+        "Test that functools.partial works correctly with getdecorator."
         partial_decorator = getdecorator(alias1="key1")
 
         @partial_decorator
@@ -160,8 +161,8 @@ class TestDecorators(unittest.TestCase):
         instance["key1"] = "value1"
         self.assertEqual(instance.alias1, "value1")
 
-    def test_setter_raises_error(self):
-        """Test that setting a property with an invalid type raises appropriate errors."""
+    def test_setter_raises_error(self: Self) -> None:
+        "Test that setting a property with an invalid type raises appropriate errors."
         mock_instance = self.MockClass()
 
         class MyClass(self.MockClass):
@@ -174,8 +175,8 @@ class TestDecorators(unittest.TestCase):
         with self.assertRaises(KeyError):
             del instance.alias1
 
-    def test_classdecorator_with_no_aliases(self):
-        """Test classdecorator with no alias provided."""
+    def test_classdecorator_with_no_aliases(self: Self) -> None:
+        "Test classdecorator with no alias provided."
 
         class MyClass(self.MockClass):
             pass
