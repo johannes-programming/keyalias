@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <title>keyalias</title>
 </head>
-<body>
+<body id="top">
+    <dl class="heading0">
+        <dt><a>keyalias</a></dt>
+        <dd>
+            <div id="overview">
+            <h2>Overview</h2>
+            <p>Add a property that is an alias for an indexer to a class.</p>
+            </div>
 
-<div id="top"></div>
-
-<div id="overview">
-<h2>Overview</h2>
-<p>Add a property that is an alias for an indexer to a class.</p>
-</div>
-
-<div id="install"></div>
-<div id="implement">
-<h2>Implementation</h2>
-<pre><code>
-import functools
+            <div id="install"></div>
+            <div id="implement">
+            <h2>Implementation</h2>
+            <pre class="block"><code>import functools
 
 __all__ = [
     "classdecorator", 
@@ -42,15 +41,12 @@ def getproperty(key):
         del self[key]
     doc = "self[%r]" % key
     ans = property(fget, fset, fdel, doc)
-    return ans    
-    
-</code></pre>
-        </div>
-        <div id="install"></div>
-        <div id="example">
-<h2>Example</h2>
-<pre><code>
-from keyalias import getdecorator
+    return ans</code></pre>
+            </div>
+            <div id="install"></div>
+            <div id="example">
+            <h2>Example</h2>
+            <pre class="block"><code>from keyalias import getdecorator
 
 @getdecorator(six=6)
 class MyClass:
@@ -74,18 +70,18 @@ print(my_instance.six)  # prints 6
 my_instance.six = 42
 print(my_instance.six)  # prints 42
 del my_instance.six
-print(my_instance.six)  # prints 7
-
-</code></pre>
-        </div>
-
-        <div id="testing"></div>
-        <div id="license"></div>
-        <div id="links"></div>
-        <div id="credits"></div>
-        <script src="https://www.johannes-programming.online/script.js"></script>
-        <script>
-            setupBasicProject();
-        </script>
-</body>
+print(my_instance.six)  # prints 7</code></pre>
+                </div>
+                <div id="testing"></div>
+                <div id="license"></div>
+                <div id="links"></div>
+                <div id="credits"></div>
+            </dd>
+        </dl>
+    </body>
+    <script src="https://www.johannes-programming.online/script.js"></script>
+    <script>
+        setupBasicProject();
+        addMetaAndLinkTags();
+    </script>
 </html>
