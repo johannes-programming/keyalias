@@ -1,7 +1,7 @@
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = [
-    "setuptools>=61.0.0",
+    "setuptools>=61.0,<62",
 ]
 
 [project]
@@ -25,7 +25,7 @@ keywords = []
 name = "keyalias"
 readme = "README.rst"
 requires-python = ">=3.11"
-version = "1.0.4"
+version = "1.0.4+local"
 
 [project.license]
 file = "LICENSE.txt"
