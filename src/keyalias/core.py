@@ -36,6 +36,4 @@ def getproperty(key: Any) -> property:
     def fdel(self: Self, /) -> Any:
         del self[key]
 
-    doc: str = "self[%r]" % key
-    ans: property = property(fget, fset, fdel, doc)
-    return ans
+    return property(fget, fset, fdel, "self[%r]" % key)

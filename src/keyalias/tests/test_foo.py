@@ -3,6 +3,8 @@ from typing import *
 
 from keyalias import keyalias
 
+__all__ = ["TestFoo"]
+
 
 class TestFoo(unittest.TestCase):
     def test_foo(self: Self):
@@ -21,7 +23,8 @@ class TestFoo(unittest.TestCase):
                 del self.data[index]
 
         # Create an instance of Foo
-        my_instance: Foo = Foo()
+        my_instance: Foo
+        my_instance = Foo()
 
         # Use the alias property to access index 6
         self.assertEqual(my_instance.bar, 6)  # Get the value at index 6
