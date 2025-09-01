@@ -16,6 +16,23 @@
                 <dd id="linksCorpus"></dd>
                 <dt id="install">Installation</dt>
                 <dd id="installCorpus"></dd>
+                <dt id="features">Features</dt>
+                <dd>
+                    <dl class="heading4">
+                        <dt>classdecorator(cls: Any, /, **kwargs: Any) -> Any</dt>
+                        <dd>
+                            <p>This decorator adds keyaliases to <code>cls</code> and then returns <code>cls</code>.</p>
+                        </dd>
+                        <dt>getdecorator(**kwargs: Any) -> functools.partial</dt>
+                        <dd>
+                            <p>This function returns a keyalias decorator for a class.</p>
+                        </dd>
+                        <dt>getproperty(key: Any) -> property</dt>
+                        <dd>
+                            <p>This function returns a new keyalias property.</p>
+                        </dd>
+                    </dl>
+                </dd>
                 <dt id="implement">Implementation</dt>
                 <dd id="implementCorpus">
                     <pre class="block"><code>import functools
