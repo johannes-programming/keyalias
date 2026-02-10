@@ -41,26 +41,8 @@
                             <p>This function returns a keyalias decorator for a class.</p>
                             <pre class="block"><code>def getdecorator(**kwargs):
     return functools.partial(classdecorator, **kwargs)</code></pre>
-                        </dd>
-                        <dt>keyalias.getproperty(key: Any) -> property</dt>
-                        <dd>
-                            <p>This function returns a new keyalias property.</p>
-                            <pre class="block"><code>def getproperty(key):
-    def fget(self, /):
-        return self[key]
-    def fset(self, value, /):
-        self[key] = value
-    def fdel(self, /):
-        del self[key]
-    doc = "self[%r]" % key
-    ans = property(fget, fset, fdel, doc)
-    return ans</code></pre>
-                        </dd>
-                    </dl>
-                </dd>
-                <dt id="example">Example</dt>
-                <dd id="exampleCorpus">
-                    <pre class="block"><code>from keyalias import getdecorator
+                            <p>Example:</p>
+                            <pre class="block"><code>from keyalias import getdecorator
 
 @getdecorator(six=6)
 class MyClass:
@@ -85,6 +67,22 @@ my_instance.six = 42
 print(my_instance.six)  # prints 42
 del my_instance.six
 print(my_instance.six)  # prints 7</code></pre>
+                        </dd>
+                        <dt>keyalias.getproperty(key: Any) -> property</dt>
+                        <dd>
+                            <p>This function returns a new keyalias property.</p>
+                            <pre class="block"><code>def getproperty(key):
+    def fget(self, /):
+        return self[key]
+    def fset(self, value, /):
+        self[key] = value
+    def fdel(self, /):
+        del self[key]
+    doc = "self[%r]" % key
+    ans = property(fget, fset, fdel, doc)
+    return ans</code></pre>
+                        </dd>
+                    </dl>
                 </dd>
                 <dt id="testing">Testing</dt>
                 <dd id="testingCorpus"></dd>
