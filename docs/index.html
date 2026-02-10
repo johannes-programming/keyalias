@@ -5,7 +5,15 @@
 </head>
 <body id="top">
     <dl class="heading0">
-        <dt><a>keyalias</a></dt>
+        <dt>
+            <a>keyalias</a>
+            <p>
+                Minor Version:
+                <select>
+                    <option selected>1.0</option>
+                </select>
+            </p>
+        </dt>
         <dd>
             <dl class="heading1">
                 <dt id="overview">Overview</dt>
@@ -18,41 +26,26 @@
                 <dd id="installCorpus"></dd>
                 <dt id="features">Features</dt>
                 <dd>
-                    <dl class="heading4">
-                        <dt>classdecorator(cls: Any, /, **kwargs: Any) -> Any</dt>
+                    <dl class="heading4" version="1.0">
+                        <dt>keyalias.classdecorator(cls: Any, /, **kwargs: Any) -> Any</dt>
                         <dd>
                             <p>This decorator adds keyaliases to <code>cls</code> and then returns <code>cls</code>.</p>
-                        </dd>
-                        <dt>getdecorator(**kwargs: Any) -> functools.partial</dt>
-                        <dd>
-                            <p>This function returns a keyalias decorator for a class.</p>
-                        </dd>
-                        <dt>getproperty(key: Any) -> property</dt>
-                        <dd>
-                            <p>This function returns a new keyalias property.</p>
-                        </dd>
-                    </dl>
-                </dd>
-                <dt id="implement">Implementation</dt>
-                <dd id="implementCorpus">
-                    <pre class="block"><code>import functools
-
-__all__ = [
-    "classdecorator", 
-    "getdecorator", 
-    "getproperty",
-]
-
-def classdecorator(cls, /, **kwargs):
+                            <pre class="block"><code>def classdecorator(cls, /, **kwargs):
     for alias, key in kwargs.items():
         pro = getproperty(key)
         setattr(cls, alias, pro)
-    return cls
-    
-def getdecorator(**kwargs):
-    return functools.partial(classdecorator, **kwargs)
-    
-def getproperty(key):
+    return cls</code></pre>
+                        </dd>
+                        <dt>keyalias.getdecorator(**kwargs: Any) -> functools.partial</dt>
+                        <dd>
+                            <p>This function returns a keyalias decorator for a class.</p>
+                            <pre class="block"><code>def getdecorator(**kwargs):
+    return functools.partial(classdecorator, **kwargs)</code></pre>
+                        </dd>
+                        <dt>keyalias.getproperty(key: Any) -> property</dt>
+                        <dd>
+                            <p>This function returns a new keyalias property.</p>
+                            <pre class="block"><code>def getproperty(key):
     def fget(self, /):
         return self[key]
     def fset(self, value, /):
@@ -61,7 +54,10 @@ def getproperty(key):
         del self[key]
     doc = "self[%r]" % key
     ans = property(fget, fset, fdel, doc)
-    return ans</code></pre></dd>
+    return ans</code></pre>
+                        </dd>
+                    </dl>
+                </dd>
                 <dt id="example">Example</dt>
                 <dd id="exampleCorpus">
                     <pre class="block"><code>from keyalias import getdecorator
