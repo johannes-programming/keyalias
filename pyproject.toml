@@ -21,8 +21,8 @@ description = "Add a property that is an alias for an indexer to a class."
 keywords = []
 name = "keyalias"
 readme = "README.rst"
-requires-python = ">=3.10"
-version = "1.0.2"
+requires-python = ">=3.8"
+version = "1.0.3"
 
 [project.license]
 file = "LICENSE.txt"

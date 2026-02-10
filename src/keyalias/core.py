@@ -1,6 +1,5 @@
 import functools
-
-from datahold import *
+from typing import *
 
 __all__ = [
     "classdecorator",
@@ -9,18 +8,22 @@ __all__ = [
 ]
 
 
-def classdecorator(cls, /, **kwargs):
+def classdecorator(cls: Any, /, **kwargs: Any) -> Any:
+    """Add keyaliases to cls."""
     for alias, key in kwargs.items():
         pro = getproperty(key)
         setattr(cls, alias, pro)
     return cls
 
 
-def getdecorator(**kwargs):
+def getdecorator(**kwargs: Any) -> functools.partial:
+    """Get a keyalias decorator for a class."""
     return functools.partial(classdecorator, **kwargs)
 
 
-def getproperty(key):
+def getproperty(key: Any) -> property:
+    """Get a keyalias property."""
+
     def fget(self, /):
         return self[key]
 
