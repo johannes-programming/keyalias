@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>keyalias Documentation</title>
-    <link href="/styles.css" rel="stylesheet" type="text/css"  />
+    <title>keyalias</title>
 </head>
 <body>
 
-<h1>keyalias</h1>
+<div id="top"></div>
 
+<div id="overview">
 <h2>Overview</h2>
 <p>Add a property that is an alias for an indexer to a class.</p>
+</div>
 
-<h2>Installation</h2>
-<p>To install <code>keyalias</code>, you can use <code>pip</code>. Open your terminal and run:</p>
-<pre><code class="bash">pip install keyalias</code></pre>
-
+<div id="install"></div>
+<div id="implement">
 <h2>Implementation</h2>
-<pre><code class="python">
+<pre><code>
 import functools
-from datahold import *
 
 __all__ = [
     "classdecorator", 
@@ -49,12 +45,14 @@ def getproperty(key):
     return ans    
     
 </code></pre>
-
+        </div>
+        <div id="install"></div>
+        <div id="example">
 <h2>Example</h2>
-<pre><code class="python">
-from keyalias import keyalias
+<pre><code>
+from keyalias import getdecorator
 
-@keyalias(six=6)
+@getdecorator(six=6)
 class MyClass:
     def __init__(self):
         self.data = list(range(10))  # Example list with 10 elements
@@ -79,23 +77,15 @@ del my_instance.six
 print(my_instance.six)  # prints 7
 
 </code></pre>
+        </div>
 
-<h2>License</h2>
-<p>This project is licensed under the MIT License.</p>
-
-<h2>Links</h2>
-<ul>
-    <li><a href="https://pypi.org/project/keyalias/#files">Download</a></li>
-    <li><a href="https://pypi.org/project/keyalias">Index</a></li>
-    <li><a href="https://github.com/johannes-programming/keyalias">Source</a></li>
-    <li><a href="http://keyalias.johannes-programming.online">Website</a></li>
-</ul>
-
-<h2>Credits</h2>
-<p><strong>Author:</strong> <a href="http://johannes-programming.online">Johannes</a></p>
-<p><strong>Email:</strong> <a href="mailto:johannes-programming@mailfence.com">johannes-programming@mailfence.com</a></p>
-
-<p>Thank you for using <code>keyalias</code>!</p>
-
+        <div id="testing"></div>
+        <div id="license"></div>
+        <div id="links"></div>
+        <div id="credits"></div>
+        <script src="https://www.johannes-programming.online/script.js"></script>
+        <script>
+            setupBasicProject();
+        </script>
 </body>
 </html>
