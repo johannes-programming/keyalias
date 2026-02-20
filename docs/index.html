@@ -93,13 +93,20 @@ print(my_instance.six)  # prints 7</code></pre>
             </dd>
         </dl>
     </body>
-    <script src="https://www.johannes-programming.online/script.js"></script>
-    <script>
-        setupLinksCorpus("keyalias");
-        setupInstallCorpus("keyalias");
-        setupTestingCorpus("keyalias");
-        setupLicenseCorpus("keyalias");
+    <script type="module">
+        import {
+            setupImpressumCorpus,
+            setupInstallCorpus,
+            setupLicenseCorpus,
+            setupLinksCorpus,
+            setupTestingCorpus,
+            addMetaAndLinkTags,
+        } from "https://www.johannes-programming.online/main.js";
         setupImpressumCorpus("keyalias");
+        setupInstallCorpus("keyalias");
+        setupLicenseCorpus("keyalias");
+        setupLinksCorpus("keyalias");
+        setupTestingCorpus("keyalias");
         addMetaAndLinkTags();
     </script>
 </html>
