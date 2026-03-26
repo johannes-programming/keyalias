@@ -1,0 +1,121 @@
+Overview
+--------
+
+This project allows to add a property that is an alias for an indexer to a class.
+
+Installation
+------------
+
+To install ``keyalias``, you can use ``pip``. 
+Open your terminal and run:
+
+.. code-block:: python
+
+    pip install keyalias
+
+Features
+--------
+
+``keyalias.classdecorator(cls: Any, /, **kwargs: Any) -> Any``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This decorator adds keyaliases to cls and then returns cls.
+
+.. code-block:: python
+
+    def classdecorator(cls, /, **kwargs):
+        for alias, key in kwargs.items():
+            pro = getproperty(key)
+            setattr(cls, alias, pro)
+        return cls
+
+``keyalias.getdecorator(**kwargs: Any) -> functools.partial``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This function returns a keyalias decorator for a class.
+
+.. code-block:: python
+
+    def getdecorator(**kwargs):
+        return functools.partial(classdecorator, **kwargs)
+
+Example:
+
+.. code-block:: python
+
+    from keyalias import getdecorator
+
+    @getdecorator(six=6)
+    class MyClass:
+        def __init__(self):
+            self.data = list(range(10))  # Example list with 10 elements
+
+        def __getitem__(self, index):
+            return self.data[index]
+
+        def __setitem__(self, index, value):
+            self.data[index] = value
+
+        def __delitem__(self, index):
+            del self.data[index]
+
+    # Create an instance of MyClass
+    my_instance = MyClass()
+
+    # Use the alias property to access index 6
+    print(my_instance.six)  # prints 6
+    my_instance.six = 42
+    print(my_instance.six)  # prints 42
+    del my_instance.six
+    print(my_instance.six)  # prints 7
+
+``keyalias.getproperty(key: Any) -> property``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This function returns a new keyalias property.
+
+.. code-block:: python
+
+    def getproperty(key):
+        def fget(self, /):
+            return self[key]
+        def fset(self, value, /):
+            self[key] = value
+        def fdel(self, /):
+            del self[key]
+        doc = "self[%r]" % key
+        ans = property(fget, fset, fdel, doc)
+        return ans
+
+``keyalias.tests.test() -> unittest.TextTestResult``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This project can be tested through its test function.
+
+.. code-block:: python
+
+    import keyalias.tests
+    keyalias.tests.test()
+
+License
+-------
+
+This project is licensed under the MIT License.
+
+Links
+-----
+
+- Download: https://pypi.org/project/keyalias/#files
+- Index: https://pypi.org/project/keyalias/
+- Source: https://github.com/johannes-programming/keyalias/
+- Website: https://keyalias.johannes-programming.online/
+
+Impressum
+---------
+
+**Johannes Programming**
+
+- Name: Johannes
+- Email: johannes.programming@gmail.com
+- Homepage: https://www.johannes-programming.online/
+- Gravatar: https://www.johannes-programming.fyi/
