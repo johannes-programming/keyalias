@@ -1,5 +1,7 @@
 import functools
-from typing import *
+from typing import Any, Self
+
+import setdoc
 
 __all__ = [
     "classdecorator",
@@ -27,13 +29,26 @@ def getdecorator(**kwargs: Any) -> functools.partial:
 def getproperty(key: Any) -> property:
     "This function returns a new keyalias property."
 
-    def fget(self: Self, /) -> Any:
+    @setdoc.basic
+    def fget(
+        self: Self, # type: ignore[misc]
+        /,
+    ) -> Any:
         return self[key]
 
-    def fset(self: Self, value: Any, /) -> Any:
+    @setdoc.basic
+    def fset(
+        self: Self, # type: ignore[misc]
+        value: Any, 
+        /,
+    ) -> None:
         self[key] = value
 
-    def fdel(self: Self, /) -> Any:
+    @setdoc.basic
+    def fdel(
+        self: Self, # type: ignore[misc]
+        /,
+    ) -> None:
         del self[key]
 
     return property(fget, fset, fdel, "self[%r]" % key)

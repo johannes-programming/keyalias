@@ -1,4 +1,11 @@
-from keyalias.core import *
-from keyalias.tests import test
+from typing import Any, Final
 
-keyalias = getdecorator  # legacy
+from keyalias.core import classdecorator, getdecorator, getproperty
+
+__all__ = [
+    "classdecorator",
+    "getdecorator",
+    "getproperty",
+    "keyalias",
+]
+keyalias: Final[Any] = getdecorator  # legacy

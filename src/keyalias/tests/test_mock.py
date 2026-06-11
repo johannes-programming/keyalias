@@ -1,5 +1,5 @@
 import unittest
-from typing import *
+from typing import Any, Self
 
 from keyalias.core import classdecorator, getdecorator, getproperty
 
@@ -47,12 +47,13 @@ class TestDecorators(unittest.TestCase):
         instance: Any
 
         # Apply the classdecorator with a single alias
-        class MyClass(self.MockClass):
+        class MyClass(self.MockClass): # type: ignore[name-defined]
             pass
 
-        MyClass = classdecorator(MyClass, alias1="key1")
+        MyClass_ :type[MyClass] 
+        MyClass_ = classdecorator(MyClass, alias1="key1")
 
-        instance = MyClass()
+        instance = MyClass_()
         instance["key1"] = "value1"
 
         # Test that alias1 points to key1
@@ -67,12 +68,12 @@ class TestDecorators(unittest.TestCase):
         instance: Any
 
         # Apply the classdecorator with multiple aliases
-        class MyClass(self.MockClass):
+        class MyClass(self.MockClass): # type: ignore[name-defined]
             pass
-
-        MyClass = classdecorator(MyClass, alias1="key1", alias2="key2")
-
-        instance = MyClass()
+        
+        MyClass_:type[MyClass]
+        MyClass_ = classdecorator(MyClass, alias1="key1", alias2="key2")
+        instance = MyClass_()
         instance["key1"] = "value1"
         instance["key2"] = "value2"
 
@@ -86,11 +87,11 @@ class TestDecorators(unittest.TestCase):
         self.assertEqual(instance["key1"], "new_value1")
         self.assertEqual(instance["key2"], "new_value2")
 
-    def test_getdecorator(self: Self) -> None:
+    def test_getdecorator_0(self: Self) -> None:
         "This test tests getdecorator function which is a partial of classdecorator."
 
         @getdecorator(alias1="key1")
-        class MyClass(self.MockClass):
+        class MyClass(self.MockClass):# type: ignore[name-defined]
             pass
 
         instance: MyClass
@@ -104,11 +105,11 @@ class TestDecorators(unittest.TestCase):
         instance.alias1 = "new_value"
         self.assertEqual(instance["key1"], "new_value")
 
-    def test_getdecorator(self: Self) -> None:
+    def test_getdecorator_1(self: Self) -> None:
         "This test tests something."
 
         @getdecorator(alias1="key1")
-        class MyClass(self.MockClass):
+        class MyClass(self.MockClass):# type: ignore[name-defined]
             pass
 
         instance: MyClass
@@ -157,9 +158,10 @@ class TestDecorators(unittest.TestCase):
 
         class MyDecoratedClass(MyClass):
             pass
-
-        MyDecoratedClass = classdecorator(MyDecoratedClass, alias1="key1")
-        instance = MyDecoratedClass()
+        
+        MyDecoratedClass_:type[MyDecoratedClass]
+        MyDecoratedClass_ = classdecorator(MyDecoratedClass, alias1="key1")
+        instance = MyDecoratedClass_()
         self.assertEqual(instance.original_attr, "original")
 
     def test_partial_application_of_getdecorator(self: Self) -> None:
@@ -168,7 +170,7 @@ class TestDecorators(unittest.TestCase):
         partial_decorator = getdecorator(alias1="key1")
 
         @partial_decorator
-        class MyClass(self.MockClass):
+        class MyClass(self.MockClass):# type: ignore[name-defined]
             pass
 
         instance = MyClass()
@@ -179,10 +181,10 @@ class TestDecorators(unittest.TestCase):
         "This test tests that setting a property with an invalid type raises appropriate errors."
         instance: Any
 
-        class MyClass(self.MockClass):
+        class MyClass(self.MockClass):# type: ignore[name-defined]
             pass
 
-        MyClass = classdecorator(MyClass, alias1="key1")
+        MyClass = classdecorator(MyClass, alias1="key1") # type: ignore[misc]
         instance = MyClass()
         with self.assertRaises(KeyError):
             del instance.alias1
@@ -191,10 +193,10 @@ class TestDecorators(unittest.TestCase):
         "Test classdecorator with no alias provided."
         instance: Any
 
-        class MyClass(self.MockClass):
+        class MyClass(self.MockClass): # type: ignore[name-defined]
             pass
 
-        MyClass = classdecorator(MyClass)
+        MyClass = classdecorator(MyClass) # type: ignore[misc]
         instance = MyClass()
         instance["key1"] = "value1"
         # No alias was set, so accessing via alias1 should raise AttributeError

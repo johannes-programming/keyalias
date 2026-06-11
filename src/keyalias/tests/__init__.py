@@ -1,9 +1,11 @@
 import unittest
-from typing import *
+
+import setdoc
 
 __all__ = ["test"]
 
 
+@setdoc.basic
 def test() -> unittest.TextTestResult:
     loader: unittest.TestLoader
     suite: unittest.TestSuite
